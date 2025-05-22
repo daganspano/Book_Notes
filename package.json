@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/daganspano/Book_Notes#readme",
   "dependencies": {
+    "body-parser": "^2.2.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "pg": "^8.16.0"

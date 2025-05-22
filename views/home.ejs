@@ -1,9 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Book Notes</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/main.css" />
+        <title>Spano Book Notes</title>
     </head>
-    <body>Book Notes Test</body>
+    <body>
+        <h1>Spano Book Notes</h1>
+        <div style="margin: 50px;">
+            <% result.forEach(column => { %>
+                <div>ID: <%= column.id %></div>
+                <div>Title: <%= column.title %></div>
+                <div>Author: <%= column.author %></div>
+                <div>Date Read: <%= column.read_date %></div>
+                <div>Rating: <%= column.rating %></div>
+                <div>Notes: <%= column.notes %></div>
+                <div>Notes Summary: <%= column.notes_summary %></div>
+                <div>Link: <%= column.book_link %></div>
+                
+                
+                
+                
+                
+                
+                
+            <% }) %>
+        </div>
+    </body>
 </html>

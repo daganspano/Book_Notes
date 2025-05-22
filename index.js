@@ -1,4 +1,5 @@
 import express from "express";
+import bodyParser from "body-parser";
 import pg from "pg";
 
 const app = express();
@@ -13,15 +14,19 @@ const db = new pg.Client({
 
 db.connect();
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+
 app.get('/', async (req, res) => {
     try {
-        const result = await db.query("SELECT * FROM Books");
-        res.json(result.rows);
+        const result = await db.query("SELECT b.id, b.title, b.author, b.read_date, r.rating, r.notes, r.notes_summary, b.book_link FROM books b JOIN ratings r ON r.book_id = b.id");
+        let items = [];
+        items = result.rows;
+        res.render("home.ejs", {result: items});
     } catch (error) {
         console.error("Error fetching data:", error);
         res.status(500).send("Database error");
     }
-    // res.render("home.ejs");
 });
 
 app.listen(PORT, () => {
