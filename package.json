@@ -1,6 +1,7 @@
 {
   "name": "book_notes",
   "version": "1.0.0",
+  "type": "module",
   "description": "Notes and ratings for books I've read",
   "main": "index.js",
   "scripts": {
@@ -17,6 +18,8 @@
   },
   "homepage": "https://github.com/daganspano/Book_Notes#readme",
   "dependencies": {
-    "express": "^5.1.0"
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "pg": "^8.16.0"
   }
 }

@@ -1,0 +1,8 @@
+CREATE TABLE ratings(
+	id SERIAL PRIMARY KEY,
+	book_id INT NOT NULL UNIQUE,
+	rating INT NOT NULL,
+	notes VARCHAR(2047) NOT NULL UNIQUE,
+	notes_summary VARCHAR(225) NOT NULL UNIQUE,
+	CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES books(id)
+);
