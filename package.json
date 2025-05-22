@@ -1,0 +1,22 @@
+{
+  "name": "book_notes",
+  "version": "1.0.0",
+  "description": "Notes and ratings for books I've read",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daganspano/Book_Notes.git"
+  },
+  "author": "Dagan Spano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daganspano/Book_Notes/issues"
+  },
+  "homepage": "https://github.com/daganspano/Book_Notes#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
