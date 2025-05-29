@@ -9,23 +9,19 @@
     </head>
     <body>
         <h1>Spano Book Notes</h1>
-        <div style="margin: 50px;">
+        <div>
             <% result.forEach(column => { %>
-                <div>ID: <%= column.id %></div>
-                <div>Title: <%= column.title %></div>
-                <div>Author: <%= column.author %></div>
-                <div>Date Read: <%= column.read_date %></div>
-                <div>Rating: <%= column.rating %></div>
+                <div>
+                    <img src="<%= column.image_link %>" alt="Book Image"/>
+                    <div>
+                        <a href="/<%= column.id %>">
+                        <h2><%= column.title %> - by <%= column.author %></h2>
+                        </a>
+                        <div><%= column.notes_summary %></div>
+                        <div><a href="">Read my notes</a>, or go to the <a href="<%= column.book_link %>">Amazon page</a> for details and reviews</div>
+                    </div>
+                </div>
                 <div>Notes: <%= column.notes %></div>
-                <div>Notes Summary: <%= column.notes_summary %></div>
-                <div>Link: <%= column.book_link %></div>
-                
-                
-                
-                
-                
-                
-                
             <% }) %>
         </div>
     </body>

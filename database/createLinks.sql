@@ -1,8 +1,7 @@
-CREATE TABLE ratings(
+CREATE TABLE links(
 	id SERIAL PRIMARY KEY,
 	book_id INT NOT NULL UNIQUE,
-	rating INT NOT NULL,
-	notes TEXT NOT NULL,
-	notes_summary TEXT NOT NULL,
+	book_link VARCHAR(255) UNIQUE,
+	image_link VARCHAR(255) UNIQUE,
 	CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES books(id)
 );

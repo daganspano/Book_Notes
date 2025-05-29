@@ -19,7 +19,8 @@ app.use(express.static("public"));
 
 app.get('/', async (req, res) => {
     try {
-        const result = await db.query("SELECT b.id, b.title, b.author, b.read_date, r.rating, r.notes, r.notes_summary, b.book_link FROM books b JOIN ratings r ON r.book_id = b.id");
+        const result = await db.query("SELECT b.id, b.title, b.author, b.read_date, r.rating, r.notes, r.notes_summary, l.book_link, l.image_link " + 
+            "FROM books b LEFT JOIN ratings r ON r.book_id = b.id LEFT JOIN links l ON l.book_id = b.id;");
         let items = [];
         items = result.rows;
         res.render("home.ejs", {result: items});
