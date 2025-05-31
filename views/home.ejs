@@ -1,28 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles/main.css" />
-        <title>Spano Book Notes</title>
-    </head>
-    <body>
-        <h1>Spano Book Notes</h1>
-        <div>
-            <% result.forEach(column => { %>
-                <div>
-                    <img src="<%= column.image_link %>" alt="Book Image"/>
-                    <div>
-                        <a href="/<%= column.id %>">
-                        <h2><%= column.title %> - by <%= column.author %></h2>
-                        </a>
-                        <div><%= column.notes_summary %></div>
-                        <div><a href="">Read my notes</a>, or go to the <a href="<%= column.book_link %>">Amazon page</a> for details and reviews</div>
-                    </div>
-                </div>
-                <div>Notes: <%= column.notes %></div>
-            <% }) %>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/logo.ico" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <title>Spano Book Notes</title>
+  </head>
+  <body>
+    <div class="container">
+      <%- include('partials/header.ejs') %>
+
+      <h2>Book List</h2>
+
+      <div>
+        This is a list of books I have read with ratings, a small summary, and
+        notes for each. This list will constantly update for each book I have
+        read.
+      </div>
+
+      <br />
+
+      <div class="br">To learn more, read my <a href="/faq">FAQ</a>.</div>
+
+      <div>
+        <% result.forEach(column => { %>
+        <div class="grid_container br">
+          <img src="<%= column.image_link %>" alt="Book Image" />
+
+          <div class="grid_content">
+            <a href="/book/<%= column.id %>">
+              <h3><%= column.title %> - by <%= column.author %></h3>
+            </a>
+
+            <div>
+              Date Read: <%= new
+              Date(column.read_date).toLocaleDateString('en-US', { month:
+              'short', day: 'numeric', year: 'numeric' }) %>. Rating: <%=
+              column.rating %>/10
+            </div>
+
+            <br />
+
+            <div><%= column.notes_summary %></div>
+
+            <br />
+
+            <div>
+              <a href="/book/<%= column.id %>">Read my notes</a>, or go to the
+              <a href="<%= column.book_link %>">Amazon page</a> for details and
+              reviews
+            </div>
+          </div>
         </div>
-    </body>
+        <% }) %>
+      </div>
+
+      <%- include('partials/footer.ejs') %>
+    </div>
+  </body>
 </html>
