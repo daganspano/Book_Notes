@@ -56,8 +56,79 @@ app.get("/book/:id", async (req, res) => {
   }
 });
 
+app.get("/add_book", (req, res) => {
+  res.render("addBook.ejs", {
+    adminPasswordNotCorrect: false,
+    imageNotFound: false,
+  });
+});
+
 app.get("/faq", (req, res) => {
   res.render("faq.ejs");
+});
+
+app.post("/add_book", async (req, res) => {
+  const {
+    title,
+    author,
+    isbn,
+    read_date,
+    book_link,
+    rating,
+    notes_summary,
+    notes,
+    admin_password,
+    image_link,
+  } = req.body;
+
+  if (admin_password !== "abcd") {
+    return res.render("addBook.ejs", {
+      adminPasswordNotCorrect: true,
+      imageNotFound: false,
+    });
+  }
+
+  const url = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
+
+  let response = null;
+
+  try {
+    response = await fetch(url, { method: "HEAD" });
+  } catch (error) {
+    console.error("Error fetching image link:", error);
+  }
+
+  if (response.ok || image_link) {
+    try {
+      const result = await db.query(
+        "INSERT INTO books (title, author, read_date) VALUES ($1, $2, $3) RETURNING id",
+        [title, author, read_date]
+      );
+      const bookId = result.rows[0].id;
+
+      await db.query(
+        "INSERT INTO ratings (book_id, rating, notes_summary, notes) VALUES ($1, $2, $3, $4)",
+        [bookId, rating, notes_summary, notes]
+      );
+
+      await db.query(
+        "INSERT INTO links (book_id, book_link, image_link) VALUES ($1, $2, $3)",
+        [bookId, book_link, url || image_link]
+      );
+
+      res.redirect("/");
+    } catch (error) {
+      console.error("Error adding book:", error);
+      res.status(500).send("Database error");
+    }
+  } else {
+    console.error("Error fetching image link:", error);
+
+    return res.render("addBook.ejs", {
+      adminPasswordNotCorrect: false,
+      imageNotFound: true,
+    });
+  }
 });
 
 app.listen(PORT, () => {

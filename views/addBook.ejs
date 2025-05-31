@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/logo.ico" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <title>Spano Book Notes</title>
+  </head>
+  <body>
+    <div class="container">
+      <%- include('partials/header.ejs') %>
+
+      <h2>Add Book</h2>
+
+      <form action="/add_book" method="POST" class="add_book_form br">
+        <div class="add_book_form_input title">
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" required />
+        </div>
+
+        <div class="add_book_form_input author">
+          <label for="author">Author:</label>
+          <input type="text" id="author" name="author" required />
+        </div>
+
+        <div class="add_book_form_input isbn">
+          <label for="isbn">ISBN:</label>
+          <input type="text" id="isbn" name="isbn" required />
+        </div>
+
+        <div class="add_book_form_input amazon_link">
+          <label for="read_date">Date Read:</label>
+          <input type="date" id="read_date" name="read_date" required />
+        </div>
+
+        <div class="add_book_form_input date_read">
+          <label for="book_link">Amazon Link:</label>
+          <input type="url" id="book_link" name="book_link" />
+        </div>
+
+        <div class="add_book_form_input rating">
+          <label for="rating">Rating (1-10):</label>
+          <input
+            type="number"
+            id="rating"
+            name="rating"
+            min="1"
+            max="10"
+            required
+          />
+        </div>
+
+        <div class="add_book_form_input summary">
+          <label for="notes_summary">Summary:</label>
+          <textarea
+            id="notes_summary"
+            name="notes_summary"
+            rows="4"
+            cols="50"
+            maxlength="200"
+            placeholder="Give a brief summary of the book. This will be displayed on the book list page."
+            required
+          ></textarea>
+        </div>
+
+        <div class="add_book_form_input notes">
+          <label for="notes">Notes:</label>
+          <textarea
+            id="notes"
+            name="notes"
+            rows="4"
+            cols="50"
+            placeholder="Write your notes here. This will be displayed on the book details page."
+            required
+          ></textarea>
+        </div>
+
+        <div class="add_book_form_input admin_password">
+          <label for="admin_password">Admin Password:</label>
+          <input
+            type="password"
+            id="admin_password"
+            name="admin_password"
+            required
+          />
+        </div>
+
+        <% if (adminPasswordNotCorrect) { %>
+        <div class="error_msg">Incorrect admin password. Please try again.</div>
+        <% } else if (imageNotFound) { %>
+        <div class="error_msg">
+          Image not found. Please check the ISBN or provide your own image link.
+        </div>
+        <div class="add_book_form_input image_link">
+          <label for="image_link">Image Link:</label>
+          <input type="url" id="image_link" name="image_link" />
+        </div>
+        <% } %>
+
+        <input class="submit" type="submit" />
+      </form>
+
+      <div style="color: #ccc">Admin Password: abcd</div>
+
+      <%- include('partials/footer.ejs') %>
+    </div>
+  </body>
+</html>
