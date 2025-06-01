@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/logo.ico" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <title>Spano Book Notes</title>
+  </head>
+  <body>
+    <div class="container">
+      <%- include('partials/header.ejs') %>
+
+      <h2>Delete Book</h2>
+
+      <form class="br" action="/delete_book/<%= bookId %>" method="POST">
+        <div class="add_book_form_input admin_password">
+          <label for="admin_password">Admin Password:</label>
+          <input
+            type="password"
+            id="admin_password"
+            name="admin_password"
+            required
+          />
+        </div>
+        <% if (adminPasswordNotCorrect) { %>
+        <div class="error_msg">Incorrect admin password. Please try again.</div>
+        <% } %>
+
+        <div class="error_msg">Are you sure you want to delete this book?</div>
+
+        <br />
+
+        <div class="edit_delete">
+          <a class="button" href="/">Cancel</a>
+
+          <input
+            type="submit"
+            value="Delete"
+            class="submit"
+            style="grid-area: none; width: 50%"
+          />
+        </div>
+      </form>
+
+      <div style="color: #ccc">Admin Password: abcd</div>
+
+      <%- include('partials/footer.ejs') %>
+    </div>
+  </body>
+</html>

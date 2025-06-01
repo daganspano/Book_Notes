@@ -56,6 +56,13 @@ app.get("/book/:id", async (req, res) => {
   }
 });
 
+app.get("/delete_book/:id", async (req, res) => {
+  res.render("deleteBook.ejs", {
+    bookId: req.params.id,
+    adminPasswordNotCorrect: false,
+  });
+});
+
 app.get("/add_book", (req, res) => {
   res.render("addBook.ejs", {
     adminPasswordNotCorrect: false,
@@ -128,6 +135,29 @@ app.post("/add_book", async (req, res) => {
       adminPasswordNotCorrect: false,
       imageNotFound: true,
     });
+  }
+});
+
+app.post("/delete_book/:id", async (req, res) => {
+  const bookId = req.params.id;
+  const adminPassword = req.body.admin_password;
+
+  if (adminPassword !== "abcd") {
+    return res.render("deleteBook.ejs", {
+      bookId: bookId,
+      adminPasswordNotCorrect: true,
+    });
+  }
+
+  try {
+    await db.query("DELETE FROM links WHERE book_id = $1", [bookId]);
+    await db.query("DELETE FROM ratings WHERE book_id = $1", [bookId]);
+    await db.query("DELETE FROM books WHERE id = $1", [bookId]);
+
+    res.redirect("/");
+  } catch (error) {
+    console.error("Error deleting book:", error);
+    res.status(500).send("Database error");
   }
 });
 

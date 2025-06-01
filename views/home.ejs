@@ -29,6 +29,11 @@
         <div class="grid_container br">
           <img src="<%= column.image_link %>" alt="Book Image" />
 
+          <div class="edit_delete">
+            <a class="button" href="/edit_book/<%= column.id %>">Edit</a>
+            <a class="button" href="/delete_book/<%= column.id %>">Delete</a>
+          </div>
+
           <div class="grid_content">
             <a href="/book/<%= column.id %>">
               <h3><%= column.title %> - by <%= column.author %></h3>
