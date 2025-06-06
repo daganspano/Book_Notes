@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/logo.ico" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/home.css" />
+    <title>Spano Book Notes</title>
+  </head>
+  <body>
+    <div class="container">
+      <%- include('../partials/header.ejs') %>
+
+      <h2>Book List</h2>
+
+      <div>
+        This is a list of books I have read with ratings, a small summary, and
+        notes for each. This list will constantly update for each book I have
+        read.
+      </div>
+
+      <br />
+
+      <div class="br">To learn more, read my <a href="/faq">FAQ</a>.</div>
+
+      <div><%- include('search.ejs') %></div>
+
+      <div><%- include('results.ejs') %></div>
+
+      <div><%- include('../partials/footer.ejs') %></div>
+    </div>
+  </body>
+</html>

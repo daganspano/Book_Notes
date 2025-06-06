@@ -45,16 +45,17 @@ nav > a:hover {
   border: none;
 }
 
-.br {
-  padding-bottom: 1rem;
-  border-bottom: #bbb solid 2px;
-  margin-bottom: 1rem;
-}
-
 h2 {
   font-size: 1.5rem;
   font-weight: 700;
   color: #333;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding-bottom: 1rem;
+  margin: 0;
 }
 
 a {
@@ -68,14 +69,13 @@ a:hover {
 }
 
 a.button {
-  grid-area: submit;
   text-align: center;
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   color: #333;
   background-color: none;
-  padding: 0.75rem;
+  padding: 0.357rem 0.75rem;
   border: 3px solid #333;
   border-radius: 9999px;
 }
@@ -87,110 +87,7 @@ a.button:hover {
   border: 3px solid #333;
 }
 
-.grid_container {
-  display: grid;
-  grid-template-areas:
-    "image content"
-    "edit_delete content";
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: auto auto;
-  gap: 0.5rem 1rem;
-}
-
-.grid_container > img {
-  width: 100%;
-  grid-area: image;
-}
-
-.grid_content {
-  grid-area: content;
-}
-
-.edit_delete {
-  grid-area: edit_delete;
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  & a {
-    width: 50%;
-  }
-}
-
-h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  padding-bottom: 1rem;
-  margin: 0;
-}
-
-.add_book_form {
-  display: grid;
-  grid-template-areas:
-    "title title title"
-    "author author isbn"
-    "amazon_link date_read rating"
-    "summary summary summary"
-    "notes notes notes"
-    "admin_password admin_password admin_password"
-    "error_msg error_msg error_msg"
-    "image_link image_link image_link"
-    "submit submit submit";
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
-  gap: 1rem 2rem;
-}
-
-.title {
-  grid-area: title;
-}
-
-.author {
-  grid-area: author;
-}
-
-.isbn {
-  grid-area: isbn;
-}
-
-.amazon_link {
-  grid-area: amazon_link;
-}
-
-.date_read {
-  grid-area: date_read;
-}
-
-.rating {
-  grid-area: rating;
-}
-
-.summary {
-  grid-area: summary;
-}
-
-.notes {
-  grid-area: notes;
-}
-
-.admin_password {
-  grid-area: admin_password;
-}
-
-.error_msg {
-  grid-area: error_msg;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #d00;
-  margin-top: 2rem;
-}
-
-.image_link {
-  grid-area: image_link;
-  margin-bottom: 2rem;
-}
-
-.submit {
-  grid-area: submit;
+.button {
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
@@ -201,13 +98,27 @@ h3 {
   border-radius: 9999px;
 }
 
-.submit:hover {
+.button:hover {
   color: #fff;
   background-color: #333;
   border: 3px solid #333;
 }
 
-.add_book_form_input {
+.br {
+  padding-bottom: 1rem;
+  border-bottom: #bbb solid 2px;
+  margin-bottom: 1rem;
+}
+
+.error_msg {
+  grid-area: error_msg;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #d00;
+  margin-top: 2rem;
+}
+
+.form_input {
   display: flex;
   flex-direction: column;
   & label {

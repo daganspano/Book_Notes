@@ -1,0 +1,36 @@
+<div>
+  <% result.forEach(column => { %>
+  <div class="grid_container br">
+    <img src="<%= column.image_link %>" alt="Book Image" />
+
+    <div class="edit_delete">
+      <a class="button" href="/edit_book/<%= column.id %>">Edit</a>
+      <a class="button" href="/delete_book/<%= column.id %>">Delete</a>
+    </div>
+
+    <div class="grid_content">
+      <a href="/book/<%= column.id %>">
+        <h3><%= column.title %> - by <%= column.author %></h3>
+      </a>
+
+      <div>
+        Date Read: <%= new Date(column.read_date).toLocaleDateString('en-US', {
+        month: 'short', day: 'numeric', year: 'numeric' }) %>. Rating: <%=
+        column.rating %>/10
+      </div>
+
+      <br />
+
+      <div><%= column.notes_summary %></div>
+
+      <br />
+
+      <div>
+        <a href="/book/<%= column.id %>">Read my notes</a>, or go to the
+        <a href="<%= column.book_link %>">Amazon page</a> for details and
+        reviews
+      </div>
+    </div>
+  </div>
+  <% }) %>
+</div>

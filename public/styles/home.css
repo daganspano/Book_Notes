@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+.grid_container {
+  display: grid;
+  grid-template-areas:
+    "image content"
+    "edit_delete content";
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: auto auto;
+  gap: 0.5rem 1rem;
+}
+
+.grid_container > img {
+  width: 100%;
+  grid-area: image;
+}
+
+.grid_content {
+  grid-area: content;
+}
+
+.edit_delete {
+  grid-area: edit_delete;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  & a {
+    width: 50%;
+  }
+}
+
+.search_grid {
+  display: grid;
+  grid-template-areas: "search rating search_button";
+  grid-template-columns: 8fr 3fr 1fr;
+  gap: 0.5rem 1rem;
+}
+
+.search {
+  grid-area: search;
+}
+
+.rating {
+  grid-area: rating;
+}
+
+.search_button {
+  grid-area: search_button;
+  height: 40px;
+  padding: 0 0.75rem;
+  align-self: end;
+}
